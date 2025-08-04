@@ -1,4 +1,4 @@
-import { Chain } from "@defillama/sdk/build/general";
+import { Chain } from "../../adapters/types";
 import { CHAIN } from "../../helpers/chains";
 import { getGraphDimensions2 } from "../../helpers/getUniSubgraph";
 import { BreakdownAdapter, SimpleAdapter } from "../../adapters/types";
@@ -32,7 +32,7 @@ const v3 = Object.keys(endpointsV3).reduce(
   (acc, chain) => ({
     ...acc,
     [chain]: {
-      fetch: v3Graphs(chain as Chain),
+      fetch: v3Graphs,
       start: startTimeV3[chain],
       meta: {
         methodology: {

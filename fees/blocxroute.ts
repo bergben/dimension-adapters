@@ -1,3 +1,4 @@
+import ADDRESSES from '../helpers/coreAssets.json'
 import { FetchOptions, SimpleAdapter } from "../adapters/types";
 import { CHAIN } from "../helpers/chains";
 import { queryDuneSql } from "../helpers/dune";
@@ -43,7 +44,7 @@ const fetch: any = async (_a:any, _b:any, options: FetchOptions) => {
           to_owner = 'DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL' OR
           to_owner = '3AVi9Tg9Uo68tJfuvoKvqKNWKkC5wPdSSdeBnizKZ6jT'
         )
-        AND token_mint_address = 'So11111111111111111111111111111111111111112'
+        AND token_mint_address = '${ADDRESSES.solana.SOL}'
         AND TIME_RANGE
     ),
     sol_collections_total AS (
@@ -87,7 +88,7 @@ const adapter: SimpleAdapter = {
       fetch: fetch,
       meta: {
         methodology: {
-          fees: "mev fees to blocXroute, substracted routed jito mev fees to prevent double counting",
+          Fees: "mev fees to blocXroute, substracted routed jito mev fees to prevent double counting",
         }
       }
     },
@@ -96,7 +97,7 @@ const adapter: SimpleAdapter = {
       start: '2024-04-15',
       meta:{
         methodology: {
-          fees: "mev fees to blocXroute, substracted routed jito mev fees to prevent double counting",
+          Fees: "mev fees to blocXroute, substracted routed jito mev fees to prevent double counting",
         }
       }
     }

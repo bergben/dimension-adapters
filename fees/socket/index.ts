@@ -1,3 +1,4 @@
+import ADDRESSES from '../../helpers/coreAssets.json'
 import { FetchOptions, FetchResultFees, SimpleAdapter } from "../../adapters/types";
 import { CHAIN } from "../../helpers/chains";
 import { ZeroAddress } from "ethers";
@@ -35,7 +36,7 @@ const fetch: any = async (options: FetchOptions): Promise<FetchResultFees> => {
   })
   for (const event of feeEvents) {
     let token = event.feesToken
-    if (String(token).toLowerCase() === '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'.toLowerCase()) {
+    if (String(token).toLowerCase() === ADDRESSES.GAS_TOKEN_2.toLowerCase()) {
       token = ZeroAddress
     }
 
@@ -50,7 +51,15 @@ const adapter: SimpleAdapter = {
   adapter: Object.keys(SocketGatewayContracts).reduce((acc, chain) => {
     return {
       ...acc,
-      [chain]: { fetch, start: '2023-08-10', }
+      [chain]: { fetch, start: '2023-08-10', 
+        meta: {
+          methodology: {
+            Fees: 'Total fees paid by users for bridging tokens.',
+            Revenue: 'Total fees paid are distributed to SOCKET inetrgations.',
+            ProtocolRevenue: 'SOCKET takes 0 fees.',
+          }
+        }
+      }
     }
   }, {})
 };

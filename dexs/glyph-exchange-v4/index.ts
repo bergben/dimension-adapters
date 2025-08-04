@@ -1,4 +1,4 @@
-import { Chain } from "@defillama/sdk/build/general";
+import { Chain } from "../../adapters/types";
 import { CHAIN } from "../../helpers/chains";
 import { getGraphDimensions2 } from "../../helpers/getUniSubgraph";
 
@@ -34,7 +34,7 @@ const classic = Object.keys(endpointsClassic).reduce(
   (acc, chain) => ({
     ...acc,
     [chain]: {
-      fetch: graphsClassic(chain as Chain),
+      fetch: graphsClassic,
       start: '2024-03-19',
       meta: {
         methodology: {
